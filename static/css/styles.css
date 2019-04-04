@@ -8,3 +8,7 @@
 .card-deck {
     border-radius: 10px;
 }
+
+.btn-success {
+    font-color:black;
+}
