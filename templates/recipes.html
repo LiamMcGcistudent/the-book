@@ -1,11 +1,18 @@
 {%extends 'base.html'%}{%block content%} {%for recipes in recipes%}
 
 
-<div class="card-deck col-sm-3 col-md-6 col-lg-3" style="display: inline-block; width: 18rem; height:10rem;">
-  <a href="#" class="btn btn-primary"><img src="{{recipes.image}}" class="card-img-top" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'"></a>
+<div class="card-deck text-white bg-info mb-3" style="max-width: 20rem; display:inline-block; margin:5px 5px 5px 5px;">
+  <a href="#" class="btn btn-info"><img src="{{recipes.image}}" style="max-height: 20rem;" class="card-img-top" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'"></a>
   <div class="card-body">
     <h5 class="card-title">{{recipes.name}}</h5>
     <p class="card-text">{{recipes.description|truncate(50)}}</p>
+    <h5 class="card-text">Allergens</h5>
+    {% for item in recipes.allergens %} {% if loop.index == 0 or item == "" %}
+    <p><b>None</b></p>
+    {% else %}
+    <span>{{ item | title}}</span> {% endif %} {% endfor %}
+    <h5 class="card-text">Difficulty</h5>
+    <h6 class="card-text">{{recipes.difficulty}}</h6>
   </div>
 </div>
 

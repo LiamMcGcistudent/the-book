@@ -1,0 +1,10 @@
+.card-body {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 10px;
+}
+
+.card-deck {
+    border-radius: 10px;
+}
