@@ -1,0 +1,52 @@
+{%extends 'base.html'%}{%block content%}
+
+<section class="container">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <h2 class="col-12 text-center">{{recipes.name|name}}</h2>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <img class="card-img-top" src="{{ recipes.image }}" alt="{{recipes.name}}">
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="card-text"><a href="#">{{recipes.difficulty}}</a>{{recipes.servings}}</p>
+                    <ul class="list-group list-group-flush">
+                        {%for ingredient in recipes.ingredients%}
+                        <li class="list-group-item">
+                            {{ingredient}}
+                        </li>
+                        {%endfor%}
+                    </ul>
+                </div>    
+            </div>
+            <hr>
+            <div class="row">
+                <h3 class="col-12 text-center">Steps</h3>
+                <div class="col-12">
+                    <ol>
+                        {%for instruction in recipes.instructions%}
+                        <li>
+                            <p>
+                                {{instruction}}
+                            </p>
+                        </li>
+                        {%endfor%}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{%endblock%}

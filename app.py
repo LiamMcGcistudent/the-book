@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 import config
 from datetime import date, datetime
@@ -14,8 +14,6 @@ app.config["SECRET_KEY"]=config.CONFIG['SECRET_KEY']
 
 mongo = PyMongo(app)
 
-user_information=mongo.db.user_information
-recipe_collection=mongo.db.recipes
 
 @app.route('/')
 def index():
@@ -23,25 +21,14 @@ def index():
 
 @app.route('/recipes')
 def recipes():
-    return render_template("recipes.html", recipes=mongo.db.recipes.find())
+    recipes=mongo.db.recipes.find().sort('name', pymongo.ASCENDING)
+    return render_template("recipes.html", recipes=recipes, title='Recipes')
     
-@app.route('/login', methods=['POST'])
-def login():
-   if request.method == "POST":
-        username = request.form['username']
+@app.route('/recipe/<recipe_id>', methods=['GET', 'POST'])
+def recipe(recipe_id):
+    recipes=mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template("recipe.html", recipes=recipes, page_title=recipe['name'], recipe_id=recipe_id)
 
-        try:
-            user_in_db = user_information.find_one({"username": username})
-        except:
-            flash("Sorry there seems to be problem with the data")
-            return redirect(url_for('index'))
-        if user_in_db:
-            flash("Logged in as {username}")
-            return_url = request.referrer
-            return redirect(return_url)
-        else:
-            flash("Sorry no profile {request.form['username']} found")
-            return redirect(url_for('index'))
 
 
 
