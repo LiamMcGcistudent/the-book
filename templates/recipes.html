@@ -2,7 +2,7 @@
 
 
 <div class="card-deck border-primary mb-3" style="max-width: 20rem; display:inline-block; margin:5px 5px 5px 5px;">
-  <a href="{{url_for('recipe', recipe_id=recipe._id)}}" class="btn btn-outline-primary"><img src="{{recipes.image}}" style="max-height: 20rem;" class="card-img-top" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'"></a>
+  <a href="{{url_for('recipe', recipe_id=recipes._id)}}" class="btn btn-outline-primary"><img src="{{recipes.image}}" style="max-height: 20rem;" class="card-img-top" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'"></a>
   <div class="card-body">
     <h5 class="card-title">{{recipes.name}}</h5>
     <p class="card-text">{{recipes.description|truncate(50)}}</p>

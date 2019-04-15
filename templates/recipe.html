@@ -4,22 +4,23 @@
     <div class="row">
         <div class="container">
             <div class="row">
-                <h2 class="col-12 text-center">{{recipes.name|name}}</h2>
+                <h2 class="col-12 text-center">{{recipe.name}}</h2>
             </div>
             <hr>
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="row">
                         <div class="col-12">
-                            <img class="card-img-top" src="{{ recipes.image }}" alt="{{recipes.name}}">
+                            <img class="card-img-top" src="{{ recipe.image }}" alt="{{recipe.name}}">
                             <hr>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <p class="card-text"><a href="#">{{recipes.difficulty}}</a>{{recipes.servings}}</p>
+                    <p class="card-text">Difficulty : <a href="#">{{recipe.difficulty}}</a></p>
+                    <p class="card-text">Serving size : {{recipe.servings}}</p>
                     <ul class="list-group list-group-flush">
-                        {%for ingredient in recipes.ingredients%}
+                        {%for ingredient in recipe.ingredients%}
                         <li class="list-group-item">
                             {{ingredient}}
                         </li>
@@ -32,7 +33,7 @@
                 <h3 class="col-12 text-center">Steps</h3>
                 <div class="col-12">
                     <ol>
-                        {%for instruction in recipes.instructions%}
+                        {%for instruction in recipe.instructions%}
                         <li>
                             <p>
                                 {{instruction}}
