@@ -27,45 +27,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('recipes')}}"><b>Recipes</b></a>
                 </li>
+                {% if 'username' in session %}
                 <li class="nav-item">
                     <a class="nav-link" href=""><b>Add Recipe</b></a>
                 </li>
+                <li><a class="btn btn-warning" href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
                 <li class="nav-item">
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#log-in-modal"><b>Log In</b></a>
+                    <a class="btn btn-danger" href="{{url_for('user_login')}}"><b>Log In</b></a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
 
-    {%block content%}{%endblock%} {% block log_in_modal %}
-    <!-- Log in Modal -->
-    <div id="log-in-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="log-in" aria-hidden="true">
-        <div class="modal-sm mx-auto mt-5">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Log in</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="/login">
-                            <div class="form-group">
-                                <label for="username">User name</label>
-                                <input name="username" type="text" class="form-control" placeholder="User name" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endblock log_in_modal %}
+    {%block content%}{%endblock%} 
 
 
 
