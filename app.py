@@ -10,7 +10,8 @@ from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
-if app(debug=True):
+app.debug == False
+if app.debug == True:
     app.secret_key = os.environ.get('SECRET_KEY')
     app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
     app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
