@@ -10,9 +10,14 @@ from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"]=config.CONFIG['MONGO_DBNAME']
-app.config["MONGO_URI"]=config.CONFIG['MONGO_URI']
-app.config["SECRET_KEY"]=config.CONFIG['SECRET_KEY']
+if app(debug=True):
+    app.secret_key = os.environ.get('SECRET_KEY')
+    app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+else:
+    app.config["MONGO_DBNAME"]=config.CONFIG['MONGO_DBNAME']
+    app.config["MONGO_URI"]=config.CONFIG['MONGO_URI']
+    app.config["SECRET_KEY"]=config.CONFIG['SECRET_KEY']
 
 mongo = PyMongo(app)
 
