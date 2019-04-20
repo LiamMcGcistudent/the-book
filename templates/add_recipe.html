@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {%block content %}
+
+<div class="bg-img">
+
+    <div class="container">
+        <h2 class="title">Add Recipe</h2>
+    </div>
+
+    <form name="add_form" onSubmit="return valid_image()" class="" action="{{url_for('insert_recipe')}}" method="POST">
+
+        <fieldset>
+            <legend>Recipe Name</legend>
+            <input required type="text" name="name" id="name" placeholder="Name" class="" />
+        </fieldset>
+
+        <fieldset>
+            <legend>Recipe Description</legend>
+            <textarea required name="description" id="description" placeholder="Recipe Description" class=""></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Image</legend>
+            <input required oninput="return checkImageExists()" type="url" name="image" id="image" placeholder="http://url" />
+        </fieldset>
+
+        <fieldset id="ingredients_fieldset">
+            <legend>Ingredients</legend>
+            <input required type="text" name="ingredient" class="ingredients" id="ingredients" placeholder="Ingredient" /><br>
+            <div class="spacer inline"></div>
+            <i id="firsta" class="fas fa-plus">add</i>
+        </fieldset>
+
+        <fieldset id="instructions_fieldset">
+            <legend>Instructions</legend>
+
+            <input required type="text" name="instruction" class="instructions" id="instructions" placeholder="Instruction" /><br>
+            <div class="spacer inline"></div>
+            <i id="firstb" class="fas fa-plus duplicate pointer">add</i>
+        </fieldset>
+
+        <fieldset>
+            <legend>Servings</legend>
+            <input required type="number" name="servings" id="servings" placeholder="Servings" />
+        </fieldset>
+        
+        <fieldset>
+            <legend>Difficulty</legend>
+            <input required type="text" name="difficulty" id="difficulty" placeholder="Difficulty" />
+        </fieldset>
+
+    </form>
+    
+    <a href=" {{ url_for('insert_recipe') }}" class="btn btn-outline-success">Submit</a>
+
+    <a href=" {{ url_for('index') }}" class="btn btn-outline-danger">Cancel</a>
+</div>
+
+{% endblock %}

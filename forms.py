@@ -7,3 +7,4 @@ class RegistrationForm(FlaskForm):
     
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
+    

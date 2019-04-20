@@ -7,15 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Book</title>
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css" />
 
 </head>
 
-<body>
+<body class="background-image">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">The Book</a>
+        <a class="navbar-brand" href="{{url_for('index')}}">The Book</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
 
@@ -29,7 +31,7 @@
                 </li>
                 {% if 'username' in session %}
                 <li class="nav-item">
-                    <a class="nav-link" href=""><b>Add Recipe</b></a>
+                    <a class="nav-link" href="{{url_for('add_recipe')}}"><b>Add Recipe</b></a>
                 </li>
                 <li><a class="btn btn-warning" href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
@@ -41,7 +43,7 @@
         </div>
     </nav>
 
-    {%block content%}{%endblock%} 
+    {%block content%}{%endblock%}
 
 
 

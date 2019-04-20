@@ -1,3 +1,7 @@
+body {
+    color: black;
+}
+
 .card-body {
     border-left: 1px solid black;
     border-right: 1px solid black;
@@ -10,5 +14,15 @@
 }
 
 .btn-success {
-    font-color:black;
+    color:black;
+}
+
+.background-image {
+    background: url(/static/images/The_Book.png) no-repeat center center fixed;
+    background-size: 500px;
+    
+}
+
+.container-main {
+    background-color: rgba(255, 255, 255, 0.7);
 }

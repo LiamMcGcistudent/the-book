@@ -20,12 +20,13 @@ mongo = PyMongo(app)
 def recipe_database():
     data = {
         "name": request.form.get('name'),
-        "cuisine": request.form.getlist('cuisine'),
+        "category": request.form.getlist('category'),
         "allergens": request.form.getlist('allergens'),
         "description": request.form.get('description'),
         "ingredients": request.form.getlist('ingredient'),
         "instructions": request.form.getlist('instructions'),
-        "serving_size": request.form.get('servings'),
+        "servings": request.form.get('servings'),
+        "difficulty": request.form.get('difficulty'),
         "image": request.form.get('image'),
         "username": session['user']
     }
@@ -102,6 +103,25 @@ def logout():
     """Logs the user out and redirects to home"""
     session.clear() # Kill session
     return redirect(url_for('index'))
+    
+@app.route('/add_recipe', methods=['GET', 'POST'])
+def add_recipe():
+    return render_template('add_recipe.html')
+    
+@app.route('/insert_recipe', methods=['GET', 'POST'])
+def insert_recipe():
+    doc = recipe_database()
+    
+    mongo.db.recipes.insert_one(doc)
+    id_num = mongo.db.recipes.find_one(
+        {'name': request.form.get('name')})
+    
+    recipe_id = ""
+    for key, value in id_num.items():
+        if key == "_id":
+            recipe_id = ObjectId(value)
+    
+    return redirect(url_for('recipe', recipe_id=recipe_id))
     
 
 if __name__ == '__main__':
