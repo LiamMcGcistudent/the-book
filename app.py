@@ -5,11 +5,11 @@ from bson.objectid import ObjectId
 from datetime import date, datetime
 from pprint import pprint
 from forms import RegistrationForm, LoginForm
-
+import logging
 
 app = Flask(__name__)
 
-app.debug == False
+
 if app.debug == True:
     app.secret_key = os.environ.get('SECRET_KEY')
     app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -21,21 +21,6 @@ else:
 
 mongo = PyMongo(app)
 
-
-def recipe_database():
-    data = {
-        "name": request.form.get('name'),
-        "category": request.form.getlist('category'),
-        "allergens": request.form.getlist('allergens'),
-        "description": request.form.get('description'),
-        "ingredients": request.form.getlist('ingredient'),
-        "instructions": request.form.getlist('instructions'),
-        "servings": request.form.get('servings'),
-        "difficulty": request.form.get('difficulty'),
-        "image": request.form.get('image'),
-        "username": session['user']
-    }
-    return data
 
 def if_user_in_session():
     username = ""
@@ -57,7 +42,7 @@ def recipes():
 def recipe(recipe_id):
     
     a_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    pprint(recipe)
+    pprint(a_recipe)
     return render_template('recipe.html', recipe=a_recipe)
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -115,18 +100,22 @@ def add_recipe():
     
 @app.route('/insert_recipe', methods=['GET', 'POST'])
 def insert_recipe():
-    doc = recipe_database()
     
-    mongo.db.recipes.insert_one(doc)
-    id_num = mongo.db.recipes.find_one(
-        {'name': request.form.get('name')})
+    recipes=mongo.db.recipes
+    recipes.insert_one({
+    'name' : "My new recipe" , #request.form['recipe-name'] 
+    'servings' : "" , 
+    'cooking-time': 0, # Always change to int if its need to be int ...
+    'categories': [] ,
+    'allergens': [],
+    'description': "A short explanation of the dish",
+    'image' : "",
+    'ingredients' : [], # This data further in code will be converted from string to list where "," is separator
+    })
+    flash('Recipe Added!')
+    return redirect(url_for('recipes'))
     
-    recipe_id = ""
-    for key, value in id_num.items():
-        if key == "_id":
-            recipe_id = ObjectId(value)
     
-    return redirect(url_for('recipe', recipe_id=recipe_id))
     
 
 if __name__ == '__main__':

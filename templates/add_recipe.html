@@ -3,56 +3,51 @@
 <div class="bg-img">
 
     <div class="container">
-        <h2 class="title">Add Recipe</h2>
+        <h2 class="title text-center">Add Recipe</h2>
     </div>
 
-    <form name="add_form" onSubmit="return valid_image()" class="" action="{{url_for('insert_recipe')}}" method="POST">
-
-        <fieldset>
-            <legend>Recipe Name</legend>
-            <input required type="text" name="name" id="name" placeholder="Name" class="" />
-        </fieldset>
-
-        <fieldset>
-            <legend>Recipe Description</legend>
-            <textarea required name="description" id="description" placeholder="Recipe Description" class=""></textarea>
-        </fieldset>
-
-        <fieldset>
-            <legend>Image</legend>
-            <input required oninput="return checkImageExists()" type="url" name="image" id="image" placeholder="http://url" />
-        </fieldset>
-
-        <fieldset id="ingredients_fieldset">
-            <legend>Ingredients</legend>
-            <input required type="text" name="ingredient" class="ingredients" id="ingredients" placeholder="Ingredient" /><br>
-            <div class="spacer inline"></div>
-            <i id="firsta" class="fas fa-plus">add</i>
-        </fieldset>
-
-        <fieldset id="instructions_fieldset">
-            <legend>Instructions</legend>
-
-            <input required type="text" name="instruction" class="instructions" id="instructions" placeholder="Instruction" /><br>
-            <div class="spacer inline"></div>
-            <i id="firstb" class="fas fa-plus duplicate pointer">add</i>
-        </fieldset>
-
-        <fieldset>
-            <legend>Servings</legend>
-            <input required type="number" name="servings" id="servings" placeholder="Servings" />
-        </fieldset>
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Recipe Name:</label>
+            <input type="text" name="name" id="name" class="form-control"/>
+        </div>
         
-        <fieldset>
-            <legend>Difficulty</legend>
-            <input required type="text" name="difficulty" id="difficulty" placeholder="Difficulty" />
-        </fieldset>
-
-    </form>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="textarea" name="description" id="description" class="form-control" rows="3" />
+        </div>
+        
+        <div class="form-group">
+            <label for="ingredients">Ingredients:</label>
+            <input type="text" name="ingredients" id="name" class="form-control"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="categories">Category:</label>
+            <input type="text" name="categories" id="categories" class="form-control"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="allergens">Allergens:</label>
+            <input type="text" name="allergens" id="allergens" class="form-control"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="servings">Servings:</label>
+            <input type="text" name="servings" id="servings" class="form-control"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="text" name="image" id="image" class="form-control"/>
+        </div>
     
-    <a href=" {{ url_for('insert_recipe') }}" class="btn btn-outline-success">Submit</a>
+    
+    <a href=" {{ url_for('insert_recipe') }}" class="btn btn-outline-success text-center">Submit</a>
 
-    <a href=" {{ url_for('index') }}" class="btn btn-outline-danger">Cancel</a>
+    <a href=" {{ url_for('index') }}" class="btn btn-outline-danger text-center">Cancel</a>
+    
+    </form>
 </div>
 
 {% endblock %}
