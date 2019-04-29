@@ -103,19 +103,21 @@ def insert_recipe():
     
     recipes=mongo.db.recipes
     recipes.insert_one({
-    'name' : "My new recipe" , #request.form['recipe-name'] 
-    'servings' : "" , 
-    'cooking-time': 0, # Always change to int if its need to be int ...
-    'categories': [] ,
-    'allergens': [],
-    'description': "A short explanation of the dish",
-    'image' : "",
-    'ingredients' : [], # This data further in code will be converted from string to list where "," is separator
+        'recipe_name':request.form.get('recipe_name'),
+        'recipe_image':request.form.get('recipe_image'),
+        'description':request.form.get('description'),
+        'instructions':request.form.getlist('instruction'),
+        'difficulty':request.form.get('difficulty'),
+        'ingredients':request.form.getlist('ingredient'),
+        'allergens':request.form.getlist('allergen'),
+        'categories':request.form.getlist('category'),
+        'cooking_time':(request.form.get('cooking_time')),
+        'servings':int(request.form.get('servings'))
     })
     flash('Recipe Added!')
     return redirect(url_for('recipes'))
     
-    
+
     
 
 if __name__ == '__main__':

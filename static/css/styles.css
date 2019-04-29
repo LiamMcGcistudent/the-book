@@ -1,5 +1,6 @@
 body {
     color: black;
+    
 }
 
 .card-body {
@@ -25,4 +26,16 @@ body {
 
 .container-main {
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+.inner-container {
+    
+    padding-top: 100px;
+    padding-bottom: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+.outer-container {
+    background-color: rgba(255, 255, 255, 0.5);
 }
