@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
     
     $(".inst-input-btn").on("click", function() {
-        $('<input type="text" class="form-control" name="instructions" id="instructions" >').insertBefore(".inst-input-btn");
+        $('<input type="text" class="form-control" name="instruction" id="instruction" >').insertBefore(".inst-input-btn");
     });
     
     $(".inst-remove-input-btn").on("click", function() {

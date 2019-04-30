@@ -7,7 +7,7 @@
   <a href="{{url_for('recipe', recipe_id=recipes._id)}}" class="btn btn-outline-primary"><img src="{{recipes.recipe_image}}" class="card-img-top" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'"></a>
   <div class="card-body">
     <h5 class="card-title">{{recipes.recipe_name}}</h5>
-    <p class="card-text">{{recipes.description|truncate(50)}}</p>
+    <p class="card-text">{{recipes.description}}</p>
     <h5 class="card-text">Allergens</h5>
     {% for item in recipes.allergens %} {% if loop.index == 0 or item == "" %}
     <p><b>None</b></p>

@@ -6,6 +6,34 @@
             <div class="row">
                 <h2 class="col-12 text-center">{{recipe.recipe_name}}</h2>
             </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 offset-lg-3 col-lg-3">
+                    <!-- function name and recipe to  allow for editing recipe-->
+                    <a class="btn btn-primary btn-edit" href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" role="button">Edit Recipe</a>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                    <a class="btn btn-primary btn-delete" role="button" data-toggle="modal" data-target="#deleteRecipe">Delete Recipe </a>
+                </div>
+                <div class="modal fade" id="deleteRecipe" tabindex="-1" role="dialog" aria-labelledby="deleteRecipeLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Are you sure you want to delete this recipe? </h4>
+                                <button type="button" class=" close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="modal-title" id="deleteRecipeLabel">{{recipe.recipe_name}}</h4>
+                                <img src="{{recipe.recipe_image}}" alt="{{recipe.recipe_name}}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-cancel" data-dismiss="modal">Cancel </button>
+                                <a role="button" href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="btn btn-primary btn-delete">Yes, delete this recipe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr>
             <div class="row">
                 <div class="col-12 col-md-6">

@@ -117,8 +117,37 @@ def insert_recipe():
     flash('Recipe Added!')
     return redirect(url_for('recipes'))
     
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    #get the recipe that matches the recipe id '_id' is the key 
+    recipe = mongo.db.recipes.find_one({'_id':ObjectId(recipe_id)})
+    return render_template("edit_recipe.html", recipe=recipe)
 
+@app.route('/update_recipe/<recipe_id>', methods=["GET", "POST"])
+def update_recipe(recipe_id):
     
+    recipes = mongo.db.recipes
+    
+    recipes.update({'_id':ObjectId(recipe_id)},
+        #match form fields to keys in the recipes collection
+        {
+        'recipe_name':request.form.get('recipe_name'),
+        'recipe_image':request.form.get('recipe_image'),
+        'description':request.form.get('description'),
+        'instructions':request.form.getlist('instruction'),
+        'difficulty':request.form.get('difficulty'),
+        'ingredients':request.form.getlist('ingredient'),
+        'allergens':request.form.getlist('allergen'),
+        'categories':request.form.getlist('category'),
+        'cooking_time':(request.form.get('cooking_time')),
+        'servings':int(request.form.get('servings'))
+        })
+    return redirect(url_for('recipes'))
+    
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({'_id':ObjectId(recipe_id)})
+    return redirect(url_for('recipes'))
 
 if __name__ == '__main__':
     app.run(host=os.getenv('IP'), port=os.getenv('PORT'),  debug=True)
