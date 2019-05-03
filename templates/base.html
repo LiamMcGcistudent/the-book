@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The Book</title>
+    <title>{{title}}-The Book</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css" />
-
+    
+    <link rel="shortcut icon" type="image/ico" href="{{ url_for('static', filename='images/favicon.ico') }}" />
+    
 </head>
 
 <body class="background-image">
@@ -22,7 +24,7 @@
         <span class="navbar-toggler-icon"></span></button>
 
         <div class="collapse navbar-collapse justify-content-right" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav justify-content-right">
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('index')}}"><b>Home</b> <span class="sr-only">(current)</span></a>
                 </li>
@@ -33,10 +35,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('add_recipe')}}"><b>Add Recipe</b></a>
                 </li>
-                <li><a class="btn btn-warning" href="{{ url_for('logout') }}">Logout</a></li>
+                <li class="nav-item justify-content-right">
+                    <a class="btn btn-warning btn-loginout" href="{{ url_for('logout') }}">Logout</a>
+                </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="btn btn-danger" href="{{url_for('user_login')}}"><b>Log In</b></a>
+                <li class="nav-item justify-content-right">
+                    <a class="btn btn-danger btn-loginout" href="{{url_for('user_login')}}"><b>Log In</b></a>
                 </li>
                 {% endif %}
             </ul>

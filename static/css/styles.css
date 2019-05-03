@@ -3,6 +3,11 @@ body {
     
 }
 
+.card-img-top {
+    border-radius: 15px;
+    height: 200px;
+}
+
 .card-body {
     border-left: 1px solid black;
     border-right: 1px solid black;
@@ -10,7 +15,7 @@ body {
     border-radius: 10px;
 }
 
-.card-deck {
+.card {
     border-radius: 10px;
 }
 
@@ -38,4 +43,13 @@ body {
 
 .outer-container {
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+.recipe-img {
+    max-width: 25rem;
+}
+
+.btn-back {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

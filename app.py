@@ -1,4 +1,4 @@
-import os
+import os, math
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
@@ -35,15 +35,19 @@ def index():
 
 @app.route('/recipes')
 def recipes():
-    recipes=mongo.db.recipes.find().sort('name', pymongo.ASCENDING)
-    return render_template("recipes.html", recipes=recipes, title='Recipes')
+    page_limit = 6 #Logic for pagination
+    current_page = int(request.args.get('current_page', 1))
+    total = mongo.db.recipes.count()
+    pages = range(1, int(math.ceil(total / page_limit)) + 1)
+    recipes = mongo.db.recipes.find().sort('_id', pymongo.ASCENDING).skip((current_page - 1)*page_limit).limit(page_limit)
+    return render_template("recipes.html", recipes=recipes, title='Recipes', current_page=current_page, pages=pages)
     
 @app.route('/recipe/<recipe_id>', methods=['GET','POST'])
 def recipe(recipe_id):
     
     a_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     pprint(a_recipe)
-    return render_template('recipe.html', recipe=a_recipe)
+    return render_template('recipe.html', recipe=a_recipe, title=a_recipe['recipe_name'])
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -96,7 +100,7 @@ def logout():
     
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
-    return render_template('add_recipe.html')
+    return render_template('add_recipe.html', title='Add Recipe')
     
 @app.route('/insert_recipe', methods=['GET', 'POST'])
 def insert_recipe():
@@ -115,13 +119,13 @@ def insert_recipe():
         'servings':int(request.form.get('servings'))
     })
     flash('Recipe Added!')
-    return redirect(url_for('recipes'))
+    return redirect(url_for('recipes', title=recipes['recipe_name']))
     
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     #get the recipe that matches the recipe id '_id' is the key 
     recipe = mongo.db.recipes.find_one({'_id':ObjectId(recipe_id)})
-    return render_template("edit_recipe.html", recipe=recipe)
+    return render_template("edit_recipe.html", recipe=recipe, title='Edit Recipe')
 
 @app.route('/update_recipe/<recipe_id>', methods=["GET", "POST"])
 def update_recipe(recipe_id):
@@ -142,12 +146,14 @@ def update_recipe(recipe_id):
         'cooking_time':(request.form.get('cooking_time')),
         'servings':int(request.form.get('servings'))
         })
-    return redirect(url_for('recipes'))
+    return redirect(url_for('recipe', recipe_id=recipe_id))
     
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id':ObjectId(recipe_id)})
     return redirect(url_for('recipes'))
+    
+
 
 if __name__ == '__main__':
     app.run(host=os.getenv('IP'), port=os.getenv('PORT'),  debug=True)

@@ -1,22 +1,60 @@
-{%extends 'base.html'%}{%block content%} {%for recipes in recipes%}
+{%extends 'base.html'%}{%block content%}
 
 
-
-
-<div class="card-deck border-primary mb-3 bg-light" style="max-width: 20rem; display:inline-block; margin:5px 5px 5px 5px;">
-  <a href="{{url_for('recipe', recipe_id=recipes._id)}}" class="btn btn-outline-primary"><img src="{{recipes.recipe_image}}" class="card-img-top" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'"></a>
-  <div class="card-body">
-    <h5 class="card-title">{{recipes.recipe_name}}</h5>
-    <p class="card-text">{{recipes.description}}</p>
-    <h5 class="card-text">Allergens</h5>
-    {% for item in recipes.allergens %} {% if loop.index == 0 or item == "" %}
-    <p><b>None</b></p>
-    {% else %}
-    <span>{{ item | title}}</span> {% endif %} {% endfor %}
-    <h5 class="card-text">Difficulty</h5>
-    <h6 class="card-text">{{recipes.difficulty}}</h6>
+<section class="container">
+  <div class="row">
+    {% for recipe in recipes %}
+    <div class="card col-md-4">
+      <div>
+        <a href="{{url_for('recipe', recipe_id=recipe._id)}}">
+					<img class="card-img-top" src="{{ recipe.recipe_image }}" alt="{{recipe.recipe_name}}" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'">
+				</a>
+      </div>
+      <h5 class="text-center card-title">{{ recipe.recipe_name }}</h5>
+      <div class="row justify-content-center">
+        <p>
+          <i class="fas fa-heart-rate fa-lg"></i> {{ recipe.difficulty }}
+        </p>
+      </div>
+    </div>
+    {% endfor %}
   </div>
-</div>
+
+  
+
+  <div class="row">
+    <div>
+      <ul class="pagination" style="position:fixed-bottom; text-align:center;">
+        <li class="page-item">
+          <a class="page-link previous" href="{{previous_url}}">&laquo;</a>
+        </li>
+        {% for page_number in pages %} {% if page_number == current_page %}
+        <li class="page-item active"><a class="page-link">{{ page_number }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
+        {% endif %} {% endfor %}
+        <li class="page-item">
+          <a class="page-link next" href="{{next_url}}">&raquo;</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
 
 
-{%endfor%} {%endblock%}
+  <!--<div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-12 col-md-9">
+      <ul class="pagination">
+        <li class="disabled"><i class="fas fa-arrow-left"></i></li>
+        {% for page_number in pages %} {% if page_number == current_page %}
+        <li class="active"><a>{{ page_number }}</a></li>
+        {% else %}
+        <li class="waves-effect"><a href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
+        {% endif %} {% endfor %}
+        <li class="disabled"><i class="fas fa-arrow-right"></i></li>
+      </ul>
+    </div>
+  </div>-->
+
+</section>
+{%endblock%}
