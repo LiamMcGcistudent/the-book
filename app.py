@@ -10,10 +10,14 @@ import logging
 app = Flask(__name__)
 
 
-app.secret_key = os.environ.get('SECRET_KEY')
-app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-
+if app.debug == True:
+    app.secret_key = os.environ.get('SECRET_KEY')
+    app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+else:
+    app.config["MONGO_DBNAME"]='thebook'
+    app.config["MONGO_URI"]='mongodb+srv://liammcg:J43joong@projects-fyjqy.mongodb.net/thebook?retryWrites=true'
+    app.config["SECRET_KEY"]='Secret_Key'
 
 mongo = PyMongo(app)
 
@@ -57,7 +61,11 @@ def signup():
         dup_user = user.find_one({'name' : request.form['username'].title()})
             
         if dup_user is None:
-            user.insert_one({'name' : request.form['username'].title()})
+            user.insert_one({
+                'name' : request.form['username'].title(),
+                'email': request.form['email'],
+                'password' : request.form['password']
+            })
             session['username'] = request.form['username']
             session['logged_in'] = True
             return redirect(url_for('index'))
@@ -77,10 +85,13 @@ def user_login():
     
     if form.validate_on_submit():
         user = mongo.db.user_information
-        logged_in_user = user.find_one({'name' : request.form['username'].title()})
+        logged_in_user = user.find_one({
+            'name' : request.form['username'].title(),
+            'password' : request.form['password']
+        })
         
         if logged_in_user is None:
-            flash('Incorrect username, please try again')
+            flash('Incorrect username or password, please try again')
             return redirect(url_for('user_login'))
         session['username'] = request.form['username']
         session['logged_in'] = True

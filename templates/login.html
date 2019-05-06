@@ -1,25 +1,27 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="outer-container bg-img">
     <div class="middle-container">
         <div class="inner-container text-center justify-center">
             <h2 class="title text-center">Log In</h2>
-            
+
             <form method="POST" action="" class="form-width">
-    
-            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-    
-            <p class="flashMessage">{{ message }}</p>
-    
-            {% endfor %} {% endif %} {% endwith %}
-            <div class="input-field center">
-            {{ form.hidden_tag() }} {{ form.username(size=32, autofocus=true, placeholder="Username") }}
-            </div>
-            <div class="section text-center">Not registered? Click <a class="btn btn-info" href="{{url_for('signup')}}">here.</a></div>
-            <button class="btn btn-success center" type="submit" name="action">Submit</button>
-        </form>
-        
+
+                {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+
+                <p class="flashMessage">{{ message }}</p>
+
+                {% endfor %} {% endif %} {% endwith %}
+                <div class="input-field center">
+                    {{ form.hidden_tag() }} {{ form.username(autofocus=true, placeholder="Username") }}
+                </div>
+
+                <div class="input-field">
+                    {{ form.hidden_tag() }} {{ form.password(placeholder="Enter Password") }}
+                </div>
+                <div class="section text-center">Not registered? Click <a class="btn btn-info" href="{{url_for('signup')}}">here.</a></div>
+                <button class="btn btn-success center" type="submit" name="action">Submit</button>
+            </form>
+
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
