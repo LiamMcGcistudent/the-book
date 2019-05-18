@@ -17,55 +17,61 @@
 </head>
 
 <body class="background-image">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{url_for('index')}}">The Book</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{url_for('recipes')}}">The Book</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span></button>
 
-        <div class="collapse navbar-collapse justify-content-right" id="navbarColor01">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="btn btn-outline-success" href="{{url_for('index')}}"><i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-outline-primary" href="{{url_for('recipes')}}"><i class="fas fa-utensils"></i></a>
-                </li>
-                {% if 'username' in session %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('add_recipe')}}"><b>Add Recipe</b></a>
-                </li>
-                <li class="nav-item justify-content-right">
-                    <a class="btn btn-warning btn-loginout" href="{{ url_for('logout') }}"><i
-								class="fas fa-sign-out-alt"></i></a>
-                </li>
-                {% else %}
-                <li class="nav-item justify-content-right">
-                    <a class="btn btn-danger btn-loginout" href="{{url_for('user_login')}}"><i
-								class="fas fa-sign-in-alt"></i></a>
-                </li>
-                {% endif %}
-                <div class="d-flex flex-row-reverse bd-highlight">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-info my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+            <div class="collapse navbar-collapse justify-content-right" id="navbarColor01">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success" href="{{url_for('recipes')}}"><i class="fas fa-utensils"></i></a>
+                    </li>
+                    {% if 'username' in session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('add_recipe')}}"><b>Add Recipe</b></a>
+                    </li>
+                    <li class="nav-item justify-content-right">
+                        <button class="btn btn-danger btn-loginout dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="fas fa-user-cog"></i></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{url_for('logout')}}">Log Out</a>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li class="nav-item justify-content-right">
+                        <button class="btn btn-danger btn-loginout dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="fas fa-user-cog"></i></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{url_for('user_login')}}">Log In</a>
+                            <a class="dropdown-item" href="{{url_for('signup')}}">Sign Up</a>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <main>
+        {%block content%}{%endblock%}
+        </main>
+        <footer class="container-fluid footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="https://github.com/LiamMcGcistudent/the-book" target="_blank"><i id="github-icon" class="fab fa-github"></i></a>
+                    <p>©2019 The Book | Web development by Liam McGourty</p>
                 </div>
-            </ul>
-        </div>
-    </nav>
-
-    {%block content%}{%endblock%}
-
-
-
+            </div>
+        </footer>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/custom.js')}}"></script>
-
 </body>
 
 </html>

@@ -2,6 +2,10 @@
 
 
 <section class="container">
+  {%block search%} {%include 'filters.html'%} {%endblock%}
+
+  <hr>
+  
   <div class="row">
     {% for recipe in recipes %}
     <div class="card col-md-4">
@@ -13,33 +17,30 @@
       <h5 class="text-center card-title">{{ recipe.recipe_name }}</h5>
       <div class="row justify-content-center">
         <p>
-          <i class="fas fa-heart-rate fa-lg"></i> {{ recipe.difficulty }}
+          <i class="fas fa-balance-scale"></i> {{ recipe.difficulty }}
         </p>
       </div>
     </div>
     {% endfor %}
   </div>
 
+
+
+
+  
+    <ul class="pagination justify-content-center" style="position:fixed-bottom; text-align:center;">
+
+      {% for page_number in pages %} {% if page_number == current_page %}
+      <li class="page-item active"><a class="page-link btn btn-info">{{ page_number }}</a></li>
+      {% else %}
+      <li class="page-item"><a class="page-link btn btn-outline-info" href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
+      {% endif %} {% endfor %}
+
+
+    </ul>
   
 
-  <div class="row">
-    <div>
-      <ul class="pagination" style="position:fixed-bottom; text-align:center;">
-        <li class="page-item">
-          <a class="page-link previous" href="{{previous_url}}">&laquo;</a>
-        </li>
-        {% for page_number in pages %} {% if page_number == current_page %}
-        <li class="page-item active"><a class="page-link">{{ page_number }}</a></li>
-        {% else %}
-        <li class="page-item"><a class="page-link" href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
-        {% endif %} {% endfor %}
-        <li class="page-item">
-          <a class="page-link next" href="{{next_url}}">&raquo;</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  </div>
+
 
 
   <!--<div class="row justify-content-center">

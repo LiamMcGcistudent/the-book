@@ -1,0 +1,40 @@
+{%block search%}
+<container>
+    <div class="inline justify-content-center col-xs-12 col-sm-3 col-md-4 col-lg-6 mb-4">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <form action="/exclude_allergen" method="POST">
+
+                    <label for="allergens">Exclude Allergen:</label>
+                    <input id="allergens" name="allergens" type="text" placeholder="Allergen name (case sensitive)">
+
+
+                    <button class="btn btn-primary btn-filter" type="Submit">Exclude Allergen</button>
+
+                </form>
+            </div>
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <form action="/filter_difficulty" method="POST">
+
+                    <label for="difficulty">Search Difficulty:</label>
+                    <input id="difficulty" name="difficulty" type="text" placeholder="Difficulty (case sensitive)">
+
+                    <button class="btn btn-primary btn-filter" type="Submit">Filter Difficulty</button>
+
+                </form>
+            </div>
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <form action="/find_ingredient" method="POST">
+
+                    <label for="difficulty">Search Ingredient:</label>
+                    <input id="ingredient" name="ingredient" type="text" placeholder="Ingredient (case sensitive)">
+
+                    <button class="btn btn-primary btn-filter" type="Submit">Filter Ingredient</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</container>
+
+{%endblock%}
