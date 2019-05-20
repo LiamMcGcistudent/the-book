@@ -8,6 +8,8 @@ main {
   padding-top: 25px;
  }
 
+
+
 .card-img-top {
     border-radius: 15px;
     height: 200px;
@@ -66,7 +68,7 @@ main {
 
 footer {
     
-    position: absolute;
+    position: static;
     background-color: transparent;
     height: 50px;
     width: 100%;
@@ -79,4 +81,8 @@ footer {
 .wrapper {
     position: relative;
     min-height: 100%;
+}
+
+#deleteRecipe > div > div > div.modal-body > img {
+    max-width: -webkit-fill-available;
 }

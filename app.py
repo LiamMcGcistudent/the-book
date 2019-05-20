@@ -24,11 +24,11 @@ mongo = PyMongo(app)
 
 def if_user_in_session():
     username = ""
-    if 'user' in session:
-        username = session['user']
+    if 'username' in session:
+        username = session['username']
     return username
 
-@app.route('/')    
+@app.route('/', methods=['GET', 'POST'])    
 @app.route('/login', methods=['GET', 'POST'])
 def user_login():
     """Function for handling the logging in of users"""
@@ -40,7 +40,7 @@ def user_login():
     if form.validate_on_submit():
         user = mongo.db.user_information
         logged_in_user = user.find_one({
-            'name' : request.form['username'].title(),
+            'username' : request.form['username'].title(),
             'password' : request.form['password']
         })
         
@@ -62,11 +62,11 @@ def signup():
     if form.validate_on_submit():
             
         user = mongo.db.user_information
-        dup_user = user.find_one({'name' : request.form['username'].title()})
+        dup_user = user.find_one({'username' : request.form['username'].title()})
             
         if dup_user is None:
             user.insert_one({
-                'name' : request.form['username'].title(),
+                'username' : request.form['username'].title(),
                 'email': request.form['email'],
                 'password' : request.form['password']
             })
@@ -122,7 +122,7 @@ def insert_recipe():
         'categories':request.form.getlist('category'),
         'cooking_time':(request.form.get('cooking_time')),
         'servings':int(request.form.get('servings')),
-        'username':session['username']
+        'author':session['username']
     })
     flash('Recipe Added!')
     return redirect(url_for('recipes', title=recipes['recipe_name']))
@@ -184,7 +184,6 @@ def ing_search():
     recipes=mongo.db.recipes
     if request.method == 'POST':
         ingredient = request.form.get("ingredient")
-        pprint(ingredient)
         recipes = mongo.db.recipes.find({ "$text": { "$search": ingredient } })
         return render_template("results.html", recipes=recipes, title='Results')
     return render_template('results.html', title='Results')
