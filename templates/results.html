@@ -15,10 +15,10 @@
         <div class="card col-md-4">
             <div>
                 <a href="{{url_for('recipe', recipe_id=recipe._id)}}">
-					<img class="card-img-top" src="{{ recipe.recipe_image }}" alt="{{recipe.recipe_name}}" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'">
+					<img class="card-img-top" src="{{ recipe.image }}" alt="{{recipe.name}}" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'">
 				</a>
             </div>
-            <h5 class="text-center card-title">{{ recipe.recipe_name }}</h5>
+            <h5 class="text-center card-title">{{ recipe.name }}</h5>
             <div class="row justify-content-center">
                 <ul class="list-inline row">
                     <li class="list-inline-item">
@@ -40,5 +40,5 @@
         </div>
         {% endfor %}
     </div>
-
+    
     {%endblock%}

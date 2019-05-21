@@ -90,18 +90,17 @@ def recipes():
     
     page_limit = 6 #Logic for pagination
     current_page = int(request.args.get('current_page', 1))
-    next_url = int(current_page) + 1
     total = mongo.db.recipes.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)
     recipes = mongo.db.recipes.find().sort('_id', pymongo.ASCENDING).skip((current_page - 1)*page_limit).limit(page_limit)
-    return render_template("recipes.html", recipes=recipes, title='Recipes', current_page=current_page, pages=pages, next_url=next_url)
+    return render_template("recipes.html", recipes=recipes, title='Recipes', current_page=current_page, pages=pages)
     
 @app.route('/recipe/<recipe_id>', methods=['GET','POST'])
 def recipe(recipe_id):
     
     a_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     pprint(a_recipe)
-    return render_template('recipe.html', recipe=a_recipe, title=a_recipe['recipe_name'])
+    return render_template('recipe.html', recipe=a_recipe, title=a_recipe['name'])
     
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
@@ -112,8 +111,8 @@ def insert_recipe():
     
     recipes=mongo.db.recipes
     recipes.insert_one({
-        'recipe_name':request.form.get('recipe_name'),
-        'recipe_image':request.form.get('recipe_image'),
+        'name':request.form.get('name'),
+        'image':request.form.get('image'),
         'description':request.form.get('description'),
         'instructions':request.form.getlist('instruction'),
         'difficulty':request.form.get('difficulty'),
@@ -175,7 +174,7 @@ def diff_search():
     recipes=mongo.db.recipes
     if request.method == 'POST':
         difficulty = request.form.get("difficulty")
-        recipes = mongo.db.recipes.find({"$text": { "$search": difficulty}})
+        recipes = mongo.db.recipes.find({"difficulty": {"$eq": request.form.get("difficulty")}})
         return render_template("results.html", recipes=recipes, title='Results', difficulty=difficulty)
     return render_template('results.html', title='Results')
     

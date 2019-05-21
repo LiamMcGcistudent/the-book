@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="row">
-                <h2 class="col-12 col-offset-5 text-center">{{recipe.recipe_name}}</h2>
+                <h2 class="col-12 col-offset-5 text-center">{{recipe.name}}</h2>
             </div>
             <div class="row">
                 <h6 class="col-12 col-offset-5 text-center">by {{recipe.author}}</h4>
@@ -23,7 +23,7 @@
                 <div class="col-12 col-md-6">
                     <div class="row">
                         <div class="col-12">
-                            <img class="recipe-img" src="{{ recipe.recipe_image }}" alt="{{recipe.recipe_name}}" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'">
+                            <img class="recipe-img" src="{{ recipe.image }}" alt="{{recipe.name}}" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'">
                             <hr>
                         </div>
                     </div>
@@ -62,16 +62,15 @@
                     </ol>
                 </div>
             </div>
-            <hr>
-            {% if session['username'] == recipe.author or username == 'admin' %}
+            <hr> {% if session['username'] == recipe.author or username == 'admin' %}
             <div class="row">
                 <div class="col-sm-12 col-md-6 offset-4 col-lg-3">
                     <!-- function name and recipe to  allow for editing recipe-->
-                    <a class="btn btn-warning btn-edit" href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" role="button">Edit Recipe</a>
+                    <a class="btn btn-info btn-edit" href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" role="button">Edit Recipe</a>
                 </div>
-                
+
                 <div class="col-sm-12 col-md-6 col-lg-3">
-                    <a class="btn btn-primary btn-delete" role="button" data-toggle="modal" data-target="#deleteRecipe">Delete Recipe </a>
+                    <a class="btn btn-danger btn-delete" role="button" data-toggle="modal" data-target="#deleteRecipe">Delete Recipe </a>
                 </div>
                 {%endif%}
                 <div class="modal fade" id="deleteRecipe" tabindex="-1" role="dialog" aria-labelledby="deleteRecipeLabel" aria-hidden="true">
@@ -88,7 +87,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-cancel" data-dismiss="modal">Cancel </button>
-                                <a role="button" href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="btn btn-primary btn-delete">Yes, delete this recipe</a>
+                                <a role="button" href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="btn btn-danger btn-delete">Yes, delete this recipe</a>
                             </div>
                         </div>
                     </div>

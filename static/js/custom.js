@@ -31,5 +31,4 @@ $(document).ready(function() {
     $(".all-remove-input-btn").on("click", function() {
         $("#all-row input:last").remove();
     });
-})
-
+});

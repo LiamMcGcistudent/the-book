@@ -1,12 +1,12 @@
 body {
     color: black;
-
+    font-family: 'Acme', sans-serif;
 }
 
 main {
-  padding-bottom: 25px;
-  padding-top: 25px;
- }
+    padding-bottom: 25px;
+    padding-top: 25px;
+}
 
 
 
@@ -67,7 +67,7 @@ main {
 }
 
 footer {
-    
+
     position: static;
     background-color: transparent;
     height: 50px;
@@ -75,7 +75,7 @@ footer {
     margin-top: 20px;
     bottom: 0;
     text-align: center;
-    
+
 }
 
 .wrapper {
@@ -83,6 +83,11 @@ footer {
     min-height: 100%;
 }
 
-#deleteRecipe > div > div > div.modal-body > img {
+#deleteRecipe>div>div>div.modal-body>img {
     max-width: -webkit-fill-available;
+}
+
+#github-icon {
+    font-size: 22px;
+    margin: 0px 17px;
 }
