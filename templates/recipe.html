@@ -1,6 +1,11 @@
 {%extends 'base.html'%}{%block content%}
 
 <section class="container-main">
+    {% with messages = get_flashed_messages() %} {% for message in messages %}
+
+    <h2 class="flashMessage">{{ message }}</h2>
+
+    {% endfor %} {% endwith %}
     <div class="row">
         <div class="container">
             <div class="row">
@@ -13,7 +18,7 @@
                 <h2 class="col-12 col-offset-5 text-center">{{recipe.name}}</h2>
             </div>
             <div class="row">
-                <h6 class="col-12 col-offset-5 text-center">by {{recipe.author}}</h4>
+                <h5 class="col-12 col-offset-5 text-center">by {{recipe.author}}</h5>
             </div>
             <div class="row">
                 <p class="col-12 col-offset-5 text-center">{{recipe.description}}</p>

@@ -110,21 +110,22 @@ def add_recipe():
 def insert_recipe():
     
     recipes=mongo.db.recipes
-    recipes.insert_one({
-        'name':request.form.get('name'),
-        'image':request.form.get('image'),
-        'description':request.form.get('description'),
-        'instructions':request.form.getlist('instruction'),
-        'difficulty':request.form.get('difficulty'),
-        'ingredients':request.form.getlist('ingredient'),
-        'allergens':request.form.getlist('allergen'),
-        'categories':request.form.getlist('category'),
-        'cooking_time':(request.form.get('cooking_time')),
-        'servings':int(request.form.get('servings')),
-        'author':session['username']
-    })
-    flash('Recipe Added!')
-    return redirect(url_for('recipes', title=recipes['recipe_name']))
+    if request.method == "POST":
+        recipes.insert_one({
+            'name':request.form.get('name'),
+            'image':request.form.get('image'),
+            'description':request.form.get('description'),
+            'instructions':request.form.getlist('instruction'),
+            'difficulty':request.form.get('difficulty'),
+            'ingredients':request.form.getlist('ingredient'),
+            'allergens':request.form.getlist('allergen'),
+            'categories':request.form.getlist('category'),
+            'cooking_time':(request.form.get('cooking_time')),
+            'servings':int(request.form.get('servings')),
+            'author':session['username']
+        })
+        flash('Recipe Added!')
+        return redirect(url_for('recipes', title=recipes['name']))
     
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
@@ -136,26 +137,29 @@ def edit_recipe(recipe_id):
 def update_recipe(recipe_id):
     
     recipes = mongo.db.recipes
-    
-    recipes.update({'_id':ObjectId(recipe_id)},
-        #match form fields to keys in the recipes collection
-        {
-        'recipe_name':request.form.get('recipe_name'),
-        'recipe_image':request.form.get('recipe_image'),
-        'description':request.form.get('description'),
-        'instructions':request.form.getlist('instruction'),
-        'difficulty':request.form.get('difficulty'),
-        'ingredients':request.form.getlist('ingredient'),
-        'allergens':request.form.getlist('allergen'),
-        'categories':request.form.getlist('category'),
-        'cooking_time':(request.form.get('cooking_time')),
-        'servings':int(request.form.get('servings'))
-        })
-    return redirect(url_for('recipe', recipe_id=recipe_id))
+    if request.method == "POST":
+        recipes.update({'_id':ObjectId(recipe_id)},
+            #match form fields to keys in the recipes collection
+            {
+            'name':request.form.get('name'),
+            'image':request.form.get('image'),
+            'description':request.form.get('description'),
+            'instructions':request.form.getlist('instruction'),
+            'difficulty':request.form.get('difficulty'),
+            'ingredients':request.form.getlist('ingredient'),
+            'allergens':request.form.getlist('allergen'),
+            'categories':request.form.getlist('category'),
+            'cooking_time':(request.form.get('cooking_time')),
+            'servings':int(request.form.get('servings')),
+            'author':session['username']
+            })
+        flash('Recipe Updated!')
+        return redirect(url_for('recipe', recipe_id=recipe_id))
     
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id':ObjectId(recipe_id)})
+    flash('Recipe has been deleted!')
     return redirect(url_for('recipes'))
 
 @app.route('/exclude_allergen', methods=['GET', 'POST'])

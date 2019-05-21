@@ -4,14 +4,14 @@
 <form action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="edit-recipe">
     <div class="form-row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="recipe_name">Recipe Name: </label>
-            <input type="text" class="form-control" name="recipe_name" id="recipe_name" value="{{recipe.recipe_name}}" required>
+            <label for="name">Recipe Name: </label>
+            <input type="text" class="form-control" name="name" id="name" value="{{recipe.name}}" required>
         </div>
     </div>
     <div class="form-row">
         <div class="col-sm-12 col-md-12 col-lg-6">
-            <label for="recipe_image">Recipe image URL:</label>
-            <input type="text" class="form-control" name="recipe_image" id="recipe_image" value="{{recipe.recipe_image}}" required>
+            <label for="image">Recipe image URL:</label>
+            <input type="text" class="form-control" name="image" id="image" value="{{recipe.image}}" required>
         </div>
     </div>
     <div class="form-row">

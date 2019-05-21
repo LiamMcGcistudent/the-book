@@ -2,10 +2,15 @@
 
 
 <section class="container">
+  {% with messages = get_flashed_messages() %} {% for message in messages %}
+
+  <h2 class="flashMessage">{{ message }}</h2>
+
+  {% endfor %} {% endwith %}
   {%block search%} {%include 'filters.html'%} {%endblock%}
 
   <hr>
-  
+
   <div class="row">
     {% for recipe in recipes %}
     <div class="card col-md-4">
@@ -27,18 +32,18 @@
 
 
 
-  
-    <ul class="pagination justify-content-center" style="position:fixed-bottom; text-align:center;">
 
-      {% for page_number in pages %} {% if page_number == current_page %}
-      <li class="page-item active"><a class="page-link btn btn-info">{{ page_number }}</a></li>
-      {% else %}
-      <li class="page-item"><a class="page-link btn btn-outline-info" href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
-      {% endif %} {% endfor %}
+  <ul class="pagination justify-content-center" style="position:fixed-bottom; text-align:center;">
+
+    {% for page_number in pages %} {% if page_number == current_page %}
+    <li class="page-item active"><a class="page-link btn btn-info">{{ page_number }}</a></li>
+    {% else %}
+    <li class="page-item"><a class="page-link btn btn-outline-info" href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
+    {% endif %} {% endfor %}
 
 
-    </ul>
-  
+  </ul>
+
 
 
 
