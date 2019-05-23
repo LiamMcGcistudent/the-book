@@ -20,7 +20,7 @@
                 <div class="input-field">
                     {{ form.hidden_tag() }} {{ form.password(placeholder="Enter Password") }}
                 </div>
-                <div class="section">Already registered? Click <a href="{{url_for('user_login')}}" class='btn btn-info'>here.</a></div>
+                <div class="section">Already registered? Click <a class="reg-login-link" href="{{url_for('user_login')}}">here.</a></div>
                 <button class="btn btn-success" type="submit" name="action">Submit</button>
             </form>
 

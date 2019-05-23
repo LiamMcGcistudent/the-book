@@ -7,44 +7,45 @@
   <h2 class="flashMessage">{{ message }}</h2>
 
   {% endfor %} {% endwith %}
-  {%block search%} {%include 'filters.html'%} {%endblock%}
+  <div class="bg-img">
+    {%block search%} {%include 'search.html'%} {%endblock%}
 
-  <hr>
+    <hr>
 
-  <div class="row">
-    {% for recipe in recipes %}
-    <div class="card col-md-4">
-      <div>
-        <a href="{{url_for('recipe', recipe_id=recipe._id)}}">
+    <div class="row">
+      {% for recipe in recipes %}
+      <div class="card col-md-4">
+        <div>
+          <a href="{{url_for('recipe', recipe_id=recipe._id)}}">
 					<img class="card-img-top" src="{{ recipe.image }}" alt="{{recipe.name}}" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'">
 				</a>
+        </div>
+        <h5 class="text-center card-title">{{ recipe.name }}</h5>
+        <div class="row justify-content-center">
+          <p>
+            <i class="fas fa-balance-scale"></i> {{ recipe.difficulty }}
+          </p>
+        </div>
       </div>
-      <h5 class="text-center card-title">{{ recipe.name }}</h5>
-      <div class="row justify-content-center">
-        <p>
-          <i class="fas fa-balance-scale"></i> {{ recipe.difficulty }}
-        </p>
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+
+
+
+
+
+    <ul class="pagination justify-content-center" style="position:fixed-bottom; text-align:center;">
+
+      {% for page_number in pages %} {% if page_number == current_page %}
+      <li class="page-item active"><a class="page-link btn btn-info">{{ page_number }}</a></li>
+      {% else %}
+      <li class="page-item"><a class="page-link btn btn-outline-info" href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
+      {% endif %} {% endfor %}
+
+
+    </ul>
+
   </div>
-
-
-
-
-
-  <ul class="pagination justify-content-center" style="position:fixed-bottom; text-align:center;">
-
-    {% for page_number in pages %} {% if page_number == current_page %}
-    <li class="page-item active"><a class="page-link btn btn-info">{{ page_number }}</a></li>
-    {% else %}
-    <li class="page-item"><a class="page-link btn btn-outline-info" href="{{ url_for('recipes', current_page=page_number) }}">{{ page_number }}</a></li>
-    {% endif %} {% endfor %}
-
-
-  </ul>
-
-
 
 
 

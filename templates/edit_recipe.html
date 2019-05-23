@@ -1,87 +1,92 @@
 {% extends 'base.html' %} {% block content %}
-<h2>Edit recipe</h2>
-<!--displays recipe in form fields to allow for updating / editing -->
-<form action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="edit-recipe">
-    <div class="form-row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="name">Recipe Name: </label>
-            <input type="text" class="form-control" name="name" id="name" value="{{recipe.name}}" required>
+
+<div class="bg-img">
+
+    <h2>Edit recipe</h2>
+    <!--displays recipe in form fields to allow for updating / editing -->
+
+    <form action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="edit-recipe">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <label for="name">Recipe Name: </label>
+                <input type="text" class="form-control" name="name" id="name" value="{{recipe.name}}" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <label for="image">Recipe image URL:</label>
-            <input type="text" class="form-control" name="image" id="image" value="{{recipe.image}}" required>
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6">
+                <label for="image">Recipe image URL:</label>
+                <input type="text" class="form-control" name="image" id="image" value="{{recipe.image}}" required>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="col-sm-12 col-md-5 col-lg-4">
-            <label for="cooking_time">Cooking Time (incl. prep): </label>
-            <input type="text" class="form-control" name="cooking_time" id="cooking_time" placeholder="1-2 hours" value="{{recipe.cooking_time}}">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-5 col-lg-4">
+                <label for="cooking_time">Cooking Time (incl. prep): </label>
+                <input type="text" class="form-control" name="cooking_time" id="cooking_time" placeholder="1-2 hours" value="{{recipe.cooking_time}}">
+            </div>
+            <div class="col-sm-12 col-md-2 col-lg-4">
+                <label class="form-label" for="servings">Servings: </label>
+                <input type="number" min="1" class="form-control" name="servings" id="servings" value="{{recipe.servings}}">
+            </div>
+            <div class="col-sm-12 col-md-2 col-lg-4">
+                <label for="difficulty">Difficulty:</label>
+                <input type="text" name="difficulty" id="difficulty" class="form-control" value="{{recipe.difficulty}}" />
+            </div>
+            <div class="col-sm-12 col-md-2 col-lg-4">
+                <label for="description">Description:</label>
+                <input type="textarea" name="description" id="description" class="form-control" rows="3" value="{{recipe.description}}" />
+            </div>
         </div>
-        <div class="col-sm-12 col-md-2 col-lg-4">
-            <label class="form-label" for="servings">Servings: </label>
-            <input type="number" min="1" class="form-control" name="servings" id="servings" value="{{recipe.servings}}">
-        </div>
-        <div class="col-sm-12 col-md-2 col-lg-4">
-            <label for="difficulty">Difficulty:</label>
-            <input type="text" name="difficulty" id="difficulty" class="form-control" value="{{recipe.difficulty}}" />
-        </div>
-        <div class="col-sm-12 col-md-2 col-lg-4">
-            <label for="description">Description:</label>
-            <input type="textarea" name="description" id="description" class="form-control" rows="3" value="{{recipe.description}}" />
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <label for="categories">Category:</label> {% for category in recipe.categories %}
-            <input type="text" name="category" id="category" class="form-control" placeholder="{{category}}" value="{{category}}" />{% endfor%}
-            <button type="button" class="cat-input-btn btn-instruction btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
+        <div class="form-row">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <label for="categories">Category:</label> {% for category in recipe.categories %}
+                <input type="text" name="category" id="category" class="form-control" placeholder="{{category}}" value="{{category}}" />{% endfor%}
+                <button type="button" class="cat-input-btn btn-instruction btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
                 </button>
-            <button type="button" class="cat-remove-input-btn btn-instruction btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
+                <button type="button" class="cat-remove-input-btn btn-instruction btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
                 </button>
+            </div>
+            <div class=" col-sm-12 col-md-12 col-lg-4">
+                <label for="allergens">Allergens:</label> {% for allergen in recipe.allergens %}
+                <input type="text" name="allergen" id="allergen" class="form-control" placeholder="{{allergen}}" value="{{allergen}}" />{% endfor %}
+                <button type="button" class="all-input-btn btn-instruction btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="all-remove-input-btn btn-instruction btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
-        <div class=" col-sm-12 col-md-12 col-lg-4">
-            <label for="allergens">Allergens:</label> {% for allergen in recipe.allergens %}
-            <input type="text" name="allergen" id="allergen" class="form-control" placeholder="{{allergen}}" value="{{allergen}}" />{% endfor %}
-            <button type="button" class="all-input-btn btn-instruction btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
+        <div class="form-row" id="ingredients-row">
+            <div class="col-sm-12 col-md-12 col-lg-12 form-group">
+                <label for="ingredients">Ingredients: </label>
+                <!-- each ingredient displayed in individual input fields -->
+                {% for ingredient in recipe.ingredients %}
+                <input type="text" class="form-control ingredient" name="ingredient" id="ingredient" placeholder="{{ingredient}}" value="{{ingredient}}"> {% endfor %}
+                <!-- buttons allowing to adding / removing input elements -->
+                <button type="button" class="new-input-btn btn-ingredient btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
                 </button>
-            <button type="button" class="all-remove-input-btn btn-instruction btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
+                <button type="button" class="remove-input-btn btn-ingredient btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
                 </button>
+            </div>
         </div>
-    </div>
-    <div class="form-row" id="ingredients-row">
-        <div class="col-sm-12 col-md-12 col-lg-12 form-group">
-            <label for="ingredients">Ingredients: </label>
-            <!-- each ingredient displayed in individual input fields -->
-            {% for ingredient in recipe.ingredients %}
-            <input type="text" class="form-control ingredient" name="ingredient" id="ingredient" placeholder="{{ingredient}}" value="{{ingredient}}"> {% endfor %}
-            <!-- buttons allowing to adding / removing input elements -->
-            <button type="button" class="new-input-btn btn-ingredient btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
+        <div class="form-row" id="instructions-row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <label for="instructions">Instructions: </label> {% for instruction in recipe.instructions %}
+                <input class="form-control" name="instruction" id="instruction" value="{{instruction}}">{% endfor %}
+                <button type="button" class="inst-input-btn btn-instruction btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
                 </button>
-            <button type="button" class="remove-input-btn btn-ingredient btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
+                <button type="button" class="inst-remove-input-btn btn-instruction btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
                 </button>
+            </div>
         </div>
-    </div>
-    <div class="form-row" id="instructions-row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            <label for="instructions">Instructions: </label> {% for instruction in recipe.instructions %}
-            <input class="form-control" name="instruction" id="instruction" value="{{instruction}}">{% endfor %}
-            <button type="button" class="inst-input-btn btn-instruction btn-success"><i class="fas fa-plus" aria-hidden="true"></i>
-                </button>
-            <button type="button" class="inst-remove-input-btn btn-instruction btn-primary"><i class="fas fa-times" aria-hidden="true"></i>
-                </button>
+        <div class="form-row">
+            <!-- button to submit updated recipe to database -->
+            <div class="col-sm-12 col-md-6 offset-lg-4 col-lg-3">
+                <button class="btn btn-primary btn-add" type="submit" name="action">Save Changes</button>
+            </div>
+            <!-- cancel button to undo any changes and return to previous page -->
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <a class="btn btn-primary btn-cancel" onclick="history.go(-1)">Cancel</a>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <!-- button to submit updated recipe to database -->
-        <div class="col-sm-12 col-md-6 offset-lg-3 col-lg-3">
-            <button class="btn btn-primary btn-add" type="submit" name="action">Save Changes</button>
-        </div>
-        <!-- cancel button to undo any changes and return to previous page -->
-        <div class="col-sm-12 col-md-6 col-lg-3">
-            <a class="btn btn-primary btn-cancel" onclick="history.go(-1)">Cancel</a>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 {% endblock %}

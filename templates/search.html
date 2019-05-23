@@ -1,15 +1,15 @@
 {%block search%}
 <container>
-    <div class="inline text-center col-xs-12 col-sm-3 col-md-4 col-lg-6 mb-12">
+    <div class="inline-block text-center search-forms">
         <div class="form-row">
-            <div class="col-4">
+            <div class="col-sm-12 col-md-2 col-lg-4">
                 <form action="/exclude_allergen" method="POST">
 
                     <label for="allergens">Exclude Allergen:</label>
                     <input id="allergens" name="allergens" type="text" placeholder="Allergen name (case sensitive)">
 
 
-                    <button class="btn btn-primary btn-filter" type="Submit">Exclude Allergen</button>
+                    <button class="btn btn-outline-primary btn-filter" type="Submit">Exclude Allergen</button>
 
                 </form>
             </div>
@@ -19,7 +19,7 @@
                     <label for="difficulty">Search Difficulty:</label>
                     <input id="difficulty" name="difficulty" type="text" placeholder="Difficulty (case sensitive)">
 
-                    <button class="btn btn-primary btn-filter" type="Submit">Search Difficulty</button>
+                    <button class="btn btn-outline-primary btn-filter" type="Submit">Search Difficulty</button>
 
                 </form>
             </div>
@@ -29,7 +29,7 @@
                     <label for="difficulty">Search Ingredient:</label>
                     <input id="ingredient" name="ingredient" type="text" placeholder="Ingredient">
 
-                    <button class="btn btn-primary btn-filter" type="Submit">Search Ingredient</button>
+                    <button class="btn btn-outline-primary btn-filter" type="Submit">Search Ingredient</button>
 
                 </form>
             </div>

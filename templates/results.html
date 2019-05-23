@@ -1,44 +1,49 @@
 {%extends 'base.html'%} {%block content%}
 
 
+<div class="bg-img">
+    <section class="container">
 
-<section class="container">
-    <div class="row">
-        <h2>Results</h2>
-    </div>
-    {%block search%} {%include 'filters.html'%} {%endblock%}
-</section>
-<hr>
-<section class="container">
-    <div class="row">
-        {% for recipe in recipes %}
-        <div class="card col-md-4">
-            <div>
-                <a href="{{url_for('recipe', recipe_id=recipe._id)}}">
+        <div class="row">
+            <h2>Results</h2>
+        </div>
+        {%block search%} {%include 'search.html'%} {%endblock%}
+
+    </section>
+
+    <hr>
+    <section class="container">
+
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="card col-md-4">
+                <div>
+                    <a href="{{url_for('recipe', recipe_id=recipe._id)}}">
 					<img class="card-img-top" src="{{ recipe.image }}" alt="{{recipe.name}}" onerror="this.src='{{ url_for('static', filename='images/image-not-found.png') }}'">
 				</a>
+                </div>
+                <h5 class="text-center card-title">{{ recipe.name }}</h5>
+                <div class="row justify-content-center">
+                    <ul class="list-inline row">
+                        <li class="list-inline-item">
+                            <i class="fas fa-balance-scale"></i>{{ recipe.difficulty }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="row justify-content-center">
+                    {%if recipe.allergens%}
+                    <ul class="list-inline row">
+                        {%for allergen in recipe.allergens%}
+                        <li class="tags list-inline-item">
+                            {{ allergen }}
+                        </li>
+                        {%endfor%}
+                    </ul>
+                    {%endif%}
+                </div>
             </div>
-            <h5 class="text-center card-title">{{ recipe.name }}</h5>
-            <div class="row justify-content-center">
-                <ul class="list-inline row">
-                    <li class="list-inline-item">
-                        <i class="fas fa-balance-scale"></i>{{ recipe.difficulty }}
-                    </li>
-                </ul>
-            </div>
-            <div class="row justify-content-center">
-                {%if recipe.allergens%}
-                <ul class="list-inline row">
-                    {%for allergen in recipe.allergens%}
-                    <li class="tags list-inline-item">
-                        {{ allergen }}
-                    </li>
-                    {%endfor%}
-                </ul>
-                {%endif%}
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    
-    {%endblock%}
+</div>
+{%endblock%}
+</section>
