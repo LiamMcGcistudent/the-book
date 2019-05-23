@@ -10,14 +10,10 @@ import logging
 app = Flask(__name__)
 
 
-if app.debug == True:
-    app.secret_key = os.environ.get('SECRET_KEY')
-    app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
-    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-else:
-    app.config["MONGO_DBNAME"]='thebook'
-    app.config["MONGO_URI"]='mongodb+srv://liammcg:J43joong@projects-fyjqy.mongodb.net/thebook?retryWrites=true'
-    app.config["SECRET_KEY"]='Secret_Key'
+
+app.secret_key = os.environ.get('SECRET_KEY')
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
 mongo = PyMongo(app)
 
@@ -199,4 +195,4 @@ def results():
 
 
 if __name__ == '__main__':
-    app.run(host=os.getenv('IP'), port=os.getenv('PORT'),  debug=True)
+    app.run(host=os.getenv('IP'), port=os.getenv('PORT'),  debug=False)
