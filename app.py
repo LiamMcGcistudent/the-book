@@ -2,7 +2,6 @@ import os, math
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
-from datetime import date, datetime
 from pprint import pprint
 from forms import RegistrationForm, LoginForm
 import logging
