@@ -8,6 +8,8 @@ main {
     padding-top: 25px;
 }
 
+/*General*/
+
 h2,
 h3,
 h4,
@@ -15,6 +17,8 @@ h5,
 h6 {
     color: black;
 }
+
+/*General*/
 
 /*Loader*/
 
@@ -186,6 +190,8 @@ h6 {
 
 /*Loader*/
 
+/*Cards*/
+
 .card-img-top {
     border-radius: 15px;
     height: 200px;
@@ -202,70 +208,25 @@ h6 {
     border-radius: 10px;
 }
 
+/*Cards*/
+
+/*Forms*/
+
+.form-row {
+    padding: 15px 0;
+}
+
+/*Forms*/
+
+/*Buttons and Links*/
+
 .btn-success {
     color: black;
-}
-
-.background-image {
-    background: url(/static/images/The_Book.png) no-repeat center center fixed;
-    background-size: 500px;
-
-}
-
-.container-main,
-.outer-container,
-.bg-img{
-    background-color: rgba(255, 255, 255, 0.7);
-    min-height: 100%;
-}
-
-.inner-container {
-
-    padding-top: 100px;
-    padding-bottom: 50px;
-    text-align: center;
-    margin: auto;
-}
-
-
-
-.recipe-img {
-    max-width: 25rem;
 }
 
 .btn-back {
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.jumbotron {
-    background-color: rgba(255, 255, 255, 0);
-}
-
-footer {
-
-    position: static;
-    background-color: transparent;
-    height: 50px;
-    width: 100%;
-    margin-top: 20px;
-    bottom: 0;
-    text-align: center;
-
-}
-
-.wrapper {
-    position: relative;
-    min-height: 100%;
-}
-
-#deleteRecipe>div>div>div.modal-body>img {
-    max-width: -webkit-fill-available;
-}
-
-#github-icon {
-    font-size: 22px;
-    margin: 0px 17px;
 }
 
 .reg-login-link {
@@ -276,3 +237,79 @@ footer {
     text-decoration: none;
     color: #bdbaff;
 }
+
+/*Buttons and Links*/
+
+/*Background and Images*/
+
+.background-image {
+    background: url(/static/images/The_Book.png) no-repeat center center fixed;
+    background-size: 500px;
+}
+
+.container-main,
+.outer-container,
+.bg-img{
+    background-color: rgba(255, 255, 255, 0.7);
+    min-height: 100%;
+}
+
+.inner-container {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+.recipe-img {
+    max-width: 25rem;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+}
+
+#deleteRecipe>div>div>div.modal-body>img {
+    max-width: -webkit-fill-available;
+}
+
+#github-icon {
+    font-size: 1.5em;
+    margin: 0px 17px;
+    color: black;
+}
+
+/*Background and Images*/
+
+/*Footer*/
+
+footer {
+    position: static;
+    background-color: transparent;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+    bottom: 0;
+    text-align: center;
+}
+
+/*Footer*/
+
+/*Media Queries*/
+
+@media (max-width: 991px) {
+    .search-forms {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .recipe-img {
+        max-width: 20em;
+        margin-left: 2em;
+    }
+}
+
+

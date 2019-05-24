@@ -2,6 +2,7 @@ import os, math
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
+
 from pprint import pprint
 from forms import RegistrationForm, LoginForm
 import logging
@@ -13,6 +14,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+
 
 mongo = PyMongo(app)
 
