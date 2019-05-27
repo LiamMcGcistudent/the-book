@@ -89,7 +89,7 @@ def recipes():
     current_page = int(request.args.get('current_page', 1))
     total = mongo.db.recipes.count()
     pages = range(1, int(math.ceil(total / page_limit)) + 1)
-    recipes = mongo.db.recipes.find().sort('_id', pymongo.ASCENDING).skip((current_page - 1)*page_limit).limit(page_limit)
+    recipes = mongo.db.recipes.find().sort('name', pymongo.ASCENDING).skip((current_page - 1)*page_limit).limit(page_limit)
     return render_template("recipes.html", recipes=recipes, title='Recipes', current_page=current_page, pages=pages)
     
 @app.route('/recipe/<recipe_id>', methods=['GET','POST'])
