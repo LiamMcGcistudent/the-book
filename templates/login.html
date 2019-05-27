@@ -1,27 +1,37 @@
 {% extends 'base.html' %} {% block content %}
-<div class="outer-container bg-img">
-    <div class="middle-container">
-        <div class="inner-container text-center justify-center">
-            <h2 class="title text-center">Log In</h2>
+<section class="container-fluid vh100" id="image-section">
+    <div class="jumbotron">
+        <h1 class="display-3">Welcome to The Book!</h1>
+        <h2 class="lead">This website is a database for all things recipes! Click on the green button on the top right to view all of the recipes we have! Please note you won't be able to add your own recipes if you are not logged in!</p>
+        <hr class="my-4">
+        <h3>Please scroll down to the bottom to log in if you already have an account with us</p>
+        <a href="#bottom"><i class="fas fa-chevron-down text-center"></i></a>
+</section>
+<section class="container">
+    <div class="outer-container bg-img">
+        <div class="middle-container">
+            <div class="inner-container text-center justify-center">
+                <h2 class="title text-center">Log In</h2>
 
-            <form method="POST" action="" class="form-width">
+                <form method="POST" action="" class="form-width" id="bottom">
 
-                {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+                    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
 
-                <p class="flashMessage">{{ message }}</p>
+                    <p class="flashMessage">{{ message }}</p>
 
-                {% endfor %} {% endif %} {% endwith %}
-                <div class="input-field center">
-                    {{ form.hidden_tag() }} {{ form.username(autofocus=true, placeholder="Username") }}
-                </div>
+                    {% endfor %} {% endif %} {% endwith %}
+                    <div class="input-field center">
+                        {{ form.hidden_tag() }} {{ form.username(placeholder="Username") }}
+                    </div>
 
-                <div class="input-field">
-                    {{ form.hidden_tag() }} {{ form.password(placeholder="Enter Password") }}
-                </div>
-                <div class="section text-center">Not registered? Click <a class="reg-login-link" href="{{url_for('signup')}}">here.</a></div>
-                <button class="btn btn-success center" type="submit" name="action">Submit</button>
-            </form>
+                    <div class="input-field">
+                        {{ form.hidden_tag() }} {{ form.password(placeholder="Enter Password") }}
+                    </div>
+                    <div class="section text-center">Not registered? Click <a class="reg-login-link" href="{{url_for('signup')}}">here.</a></div>
+                    <button class="btn btn-success center" type="submit" name="action">Submit</button>
+                </form>
 
+            </div>
         </div>
-    </div>
-    {% endblock %}
+</section>
+{% endblock %}

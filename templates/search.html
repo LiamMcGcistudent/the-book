@@ -2,28 +2,28 @@
 <container>
     <div class="text-center search-forms">
         <div class="form-row">
-            <div class="col-4 col-sm-3 col-md-2 col-lg-4">
+            <div class="col-12 col-sm-3 col-md-6 col-lg-4">
                 <form action="/exclude_allergen" method="POST">
 
-                    <label for="allergens">Exclude Allergen:</label>
-                    <input id="allergens" name="allergens" type="text" placeholder="Allergen name (case sensitive)">
+                    <label for="allergens">*Exclude Allergen:</label>
+                    <input id="allergens" name="allergens" type="text" placeholder="Allergen (case sensitive)">
 
 
                     <button class="btn btn-outline-primary btn-filter" type="Submit">Exclude Allergen</button>
 
                 </form>
             </div>
-            <div class="col-4 col-sm-3 col-md-6 col-lg-4">
+            <div class="col-12 col-sm-3 col-md-6 col-lg-4 diff-search">
                 <form action="/filter_difficulty" method="POST">
 
-                    <label for="difficulty">Search Difficulty:</label>
+                    <label for="difficulty">*Search Difficulty:</label>
                     <input id="difficulty" name="difficulty" type="text" placeholder="Difficulty (case sensitive)">
 
                     <button class="btn btn-outline-primary btn-filter" type="Submit">Search Difficulty</button>
 
                 </form>
             </div>
-            <div class="col-4 col-sm-3 col-md-6 col-lg-4">
+            <div class="col-12 col-sm-3 col-md-12 col-lg-4 ing-search">
                 <form action="/find_ingredient" method="POST">
 
                     <label for="difficulty">Search Ingredient:</label>
