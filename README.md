@@ -142,7 +142,7 @@
 <h3>Deployment</h3>
 <p>My project was created in a cloud9 workspace and deployed heroku and is hosted on github pages. The link to the working heroku page can be found <a href="https://the-book-4.herokuapp.com" target="_blank">here.</a>The deployment process was as follows:</p>
 
-<h4>In the cloud9 command line I entered the following:<h4>
+<h4>In the cloud9 command line I entered the following:</h4>
 <ul>
     <li><code>git init</code> to start a new git repository</li>
     <li><code>pip3 freeze --local > requirements.txt</code>Creates a .txt file which tells Heroku what dependencies the project is using.</li>
@@ -151,13 +151,13 @@
     <li><code>git commit -m "initial commit"</code> to create an initial commit in the github repository</li>
     <li><code>git push</code> and enter username and password to push the commit to github</li>
 </ul>
-<h4>In app.py in cloud9 I added the following to allow Heroku to find the variables: <h4>
+<h4>In app.py in cloud9 I added the following to allow Heroku to find the variables: </h4>
 <ul>
     <li><code>app.secret_key = os.environ.get('SECRET_KEY')</code></li>
     <li><code>app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")</code></li>
     <li><code>app.config["MONGO_URI"] = os.environ.get("MONGO_URI")</code></li>
 </ul>
-<h4>In Heroku:<h4>
+<h4>In Heroku:</h4>
 <ul>
     <li>I created a new app and named it <code>the-book-4</code></li>
     <li>I then went to the settings tab and clicked on config vars and entered the following:</li>
@@ -167,7 +167,7 @@
             <li><code>SECRET_KEY = |my_secret_key|</code></li>
             <li><code>MONGO_DBNAME = |database name|</code></li>
             <li><code>MONGO_URI = |mongodb+srv://|username|:|password|@projects-fyjqy.mongodb.net/|database name|?retryWrites=true|</code></li>
-            <li><code>I then connected heroku to my github repository so that every commit I made to github, heroku would automatically be updated.</code></li>
+            <li>I then connected heroku to my github repository so that every commit I made to github, heroku would automatically be updated.</li>
         </ul>
 </ul>
 
@@ -175,13 +175,13 @@
 
 <p>I tested my CSS file using the Jigsaw validator and no errors were found.</p>
 <p>I checked my HTML with W3C validator. Only Jinja related errors were returned due to the validation not programmed to read them.</p>
-<p>I formatted my Python code with <code>autopep8</code> and validated it with <code>flake8</code>. No errors were found.</p>
+<p>I formatted my Python code with <code>autopep8</code> and validated it with <code>flake8</code>. No errors were found.
     <ul>
         <li><code>sudo pip install --upgrade autopep8</code></li>
         <li><code>autopep8 --in-place --aggressive --aggressive app.py</code></li>
         <li><code>sudo pip install flake8</code></li>
         <li><code>flake8 app.py</code></li>
-    <ul>
+    </ul></p>
 <p>I tested the app at different screen resolutions and across different browsers. The app was fully responsive and there were no evident bugs.</p>
 
 <h2>Credits and Acknowledgements</h2>
