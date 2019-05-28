@@ -19,13 +19,13 @@
 </head>
 
 <body class="background-image">
-
+    <!--Loader Code-->
     <div id="loader-wrapper">
         <div id="loader"></div>
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
     </div>
-
+    <!--End of Loader Code-->
     <div class="wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="{{url_for('recipes')}}">The Book</a>
@@ -34,6 +34,7 @@
 
             <div class="collapse navbar-collapse justify-content-right" id="navbarColor02">
                 <ul class="navbar-nav ml-auto">
+                    <!--Ensures only a logged in user can add a recipe-->
                     {% if 'username' in session %}
                     <li class="nav-item justify-content-right">
                         <div class="btn-group dropleft">

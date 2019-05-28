@@ -67,7 +67,9 @@
                     </ol>
                 </div>
             </div>
-            <hr> {% if session['username'] == recipe.author or username == 'admin' %}
+            <hr> 
+            <!--Stops users from deleting or editing recipes where their username doesn't match the author-->
+            {% if session['username'] == recipe.author or username == 'admin' %}
             <div class="row">
                 <div class="col-3 col-sm-3 col-md-6 col-lg-4 offset-lg-3">
                     <!-- function name and recipe to  allow for editing recipe-->
@@ -78,6 +80,7 @@
                     <a class="btn btn-danger btn-delete" role="button" data-toggle="modal" data-target="#deleteRecipe"><i class="fas fa-trash-alt"></i></a>
                 </div>
                 {%endif%}
+                <!--Delete pop up to prevent accidental deletion of a recipe-->
                 <div class="modal fade" id="deleteRecipe" tabindex="-1" role="dialog" aria-labelledby="deleteRecipeLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

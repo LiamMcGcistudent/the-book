@@ -1,0 +1,51 @@
+{
+    "_id":{
+        "$oid":"5ce40c6d2c6359a66f357765"
+    },
+    "image":"https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--957468_10.jpg?itok=bTr73o0E",
+    "name":"Pea, feta & quinoa spring rolls with roast tomato nam prik",
+    "description":"Serve up these vegetarian filo pastry canapés with nam prik - a Thai chilli paste that we've mixed with oven-roasted tomatoes to make a dipping sauce",
+    "ingredients":[
+        "50g quinoa",
+        "200g frozen petits pois",
+        "85g feta cheese, crumbled",
+        "small bunch mint leaves, chopped",
+        "3 spring onions, finely chopped",
+        "zest and juice 1 lemon",
+        "6 sheets filo pastry (270g pack)",
+        "1 egg, beaten",
+        "sunflower oil, for frying",
+        "6 large tomatoes, halved",
+        "4 tbsp extra-virgin olive oil",
+        "1 garlic clove, chopped",
+        "½ red chilli, chopped",
+        "2 tsp grated ginger",
+        "½ bunch coriander including stalks, roughly chopped",
+        "¼ bunch mint leaves, roughly chopped",
+        "1 tbsp lime juice",
+        "1 tbsp tamarind paste",
+        "1 tsp palm sugar"
+        ],
+    "categories":[
+        "starter",
+        "party food",
+        "pastry",
+        "vegetarian"
+        ],
+    "difficulty":"Challenging",
+    "cooking_time":"2 hours 40 mins",
+    "servings":"12",
+    "allergens":[
+        "Egg",
+        "Wheat",
+        "Gluten",
+        "Dairy"
+        ],
+    "instructions":[
+        "Heat oven to 160C/140C fan/gas 3. To make the nam prik, place the tomatoes, cut-side up, on a baking sheet. Drizzle with 1 tbsp of the olive oil, season, then roast for 1½-2 hrs until semi-dried. Remove from the oven, let cool, then tip into a food processor with the remaining ingredients and blitz to a medium purée.",
+        "Cook the quinoa in a pan of boiling salted water following pack instructions. Tip into a bowl and set aside to cool. Cook the peas for 1 min in boiling water, then drain and run under cold water for a few mins. Drain thoroughly, tip into a food processor and pulse to a chunky purée. Add this to the cooled quinoa along with the feta, mint, spring onions and lemon zest and juice. Mix well to combine and season to taste, adding more lemon juice if required.",
+        "Lay a sheet of filo in front of you, keeping the remainder covered under a damp tea towel. Cut the filo in half across the width to make 2 squares. With one corner pointing towards you (so you are looking at a diamond shape rather than a square), spoon 2 tbsp of the filling just below the centre line and shape into a log. Brush the pastry edges with egg, then fold in the 2 side corners. Keeping your fingers on the corners, bring the bottom corner up over the filling towards the centre, then roll up tightly towards the top corner. It’s important to roll as tightly as possible, so the spring rolls cook evenly. Repeat with the remaining filo sheets and filling.",
+        "Heat about 3cm sunflower oil in a large pan or wok and fry the spring rolls, in batches, for 2-3 mins or until golden brown. Remove with a slotted spoon and drain on kitchen paper. Transfer the spring rolls to a plate and serve with the nam prik."
+        ],
+    "author":"Good Food"
+}
